@@ -1,102 +1,13 @@
 import PaydLogo from "@/components/PaydLogo";
+import BasestonkLiveChart from "@/components/BasestonkLiveChart";
+import Reveal from "@/components/Reveal";
+import CountUp from "@/components/CountUp";
 
 const navLinks = [
   { label: "How it works", href: "#how" },
   { label: "Rewards", href: "#rewards" },
   { label: "Token", href: "#token" },
 ];
-
-function BasestonkChart({ className = "" }: { className?: string }) {
-  return (
-    <div
-      className={`relative overflow-hidden rounded-2xl border border-white/15 bg-navy ${className}`}
-    >
-      <div className="flex items-center justify-between px-5 md:px-8 pt-5 md:pt-6">
-        <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-canary" />
-          <span className="text-xs md:text-sm font-medium uppercase tracking-[0.22em] text-cotton/85">
-            Basestonk — Live chart
-          </span>
-        </div>
-        <span className="text-[11px] md:text-xs font-mono text-cotton/55">
-          $PAYD / USDC
-        </span>
-      </div>
-
-      <div className="px-5 md:px-8 mt-4 md:mt-6">
-        <div className="flex items-baseline gap-3">
-          <span className="font-serif text-4xl md:text-6xl leading-none">
-            $0.0241
-          </span>
-          <span className="text-sm md:text-lg font-semibold text-[#7efaa0]">
-            +118.2%
-          </span>
-        </div>
-        <p className="text-xs md:text-sm text-cotton/60 mt-1.5">
-          Since deployment on Basestonk · live once launched
-        </p>
-      </div>
-
-      <svg
-        viewBox="0 0 1200 320"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto mt-2 md:mt-4 px-1"
-        preserveAspectRatio="none"
-      >
-        {[40, 90, 140, 190, 240, 290].map((y) => (
-          <line
-            key={y}
-            x1="0"
-            y1={y}
-            x2="1200"
-            y2={y}
-            stroke="#FFFFFF"
-            strokeOpacity="0.06"
-          />
-        ))}
-        <defs>
-          <linearGradient id="chart-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#64F08A" stopOpacity="0.28" />
-            <stop offset="100%" stopColor="#64F08A" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M0 250 L80 232 L160 244 L240 208 L320 220 L400 188 L480 200 L560 152
-             L640 172 L720 128 L800 148 L880 96 L960 118 L1040 62 L1120 84 L1200 24
-             L1200 320 L0 320 Z"
-          fill="url(#chart-fill)"
-        />
-        <path
-          d="M0 250 L80 232 L160 244 L240 208 L320 220 L400 188 L480 200 L560 152
-             L640 172 L720 128 L800 148 L880 96 L960 118 L1040 62 L1120 84 L1200 24"
-          stroke="#64F08A"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="1200" cy="24" r="6" fill="#64F08A" />
-        <circle
-          cx="1200"
-          cy="24"
-          r="16"
-          stroke="#64F08A"
-          strokeOpacity="0.35"
-          strokeWidth="2"
-        />
-      </svg>
-
-      <div className="flex items-center justify-between px-5 md:px-8 py-4 md:py-5 font-mono text-[10px] md:text-[11px] text-cotton/50 border-t border-white/10">
-        <span>00:00</span>
-        <span className="text-cotton/70 flex items-center gap-2">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#64F08A] animate-pulse" />
-          Live
-        </span>
-        <span>24h</span>
-      </div>
-    </div>
-  );
-}
 
 function MiniChart() {
   return (
@@ -168,10 +79,10 @@ export default function Home() {
     <div className="min-h-screen bg-blu text-cotton">
       {/* ── Nav ─────────────────────────────────────── */}
       <header className="sticky top-0 z-50 bg-blu/90 backdrop-blur-md border-b border-white/10">
-        <div className="h-16 md:h-[72px] flex items-center justify-between px-5 md:px-10">
-          <a href="#" className="flex items-center gap-2.5">
-            <PaydLogo size={30} stroke="#EDEDED" />
-            <span className="text-lg font-bold tracking-tight text-cotton">
+        <div className="h-20 md:h-24 flex items-center justify-between px-5 md:px-10">
+          <a href="#" className="flex items-center gap-3">
+            <PaydLogo size={46} stroke="#EDEDED" />
+            <span className="text-2xl md:text-[28px] font-bold tracking-tight text-cotton">
               PAYD<span className="text-canary">.</span>
             </span>
           </a>
@@ -201,26 +112,26 @@ export default function Home() {
       <section className="pb-24 md:pb-32 px-5 md:px-10">
         <div className="max-w-[1320px] mx-auto">
           {/* Headline */}
-          <div className="text-center pt-16 md:pt-24">
-            <h1 className="font-serif font-normal text-[40px] leading-[1.06] tracking-[-1.2px] md:text-[64px] lg:text-[76px] lg:tracking-[-1.52px] max-w-[1100px] mx-auto">
+          <div className="text-center pt-16 md:pt-20">
+            <h1 className="hero-fade font-serif font-normal text-[40px] leading-[1.06] tracking-[-1.2px] md:text-[64px] lg:text-[76px] lg:tracking-[-1.52px] max-w-[1100px] mx-auto">
               This is big. In fact, it’s the world’s first
               <br className="hidden md:block" /> community-run digital dollar{" "}
               <a href="#notes" className="no-underline align-super text-[22px] md:text-[30px] text-cotton/60">1</a>
               — ever.
             </h1>
-            <p className="text-sm md:text-lg text-cotton/65 max-w-xl mx-auto mt-6 md:mt-8">
+            <p className="hero-fade text-sm md:text-lg text-cotton/65 max-w-xl mx-auto mt-6 md:mt-8" style={{ animationDelay: "0.12s" }}>
               Hold $PAYD and the rewards of every trade flow to you — in USDC,
               automatically.
             </p>
           </div>
 
-          {/* Chart — replaces the globe */}
-          <div className="mt-12 md:mt-20">
-            <BasestonkChart />
-          </div>
+          {/* Chart — live from Basestonk */}
+          <Reveal className="mt-12 md:mt-20">
+            <BasestonkLiveChart />
+          </Reveal>
 
           {/* Stats row */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-8 mt-16 md:mt-[120px]">
+          <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-8 mt-16 md:mt-[120px]">
             {/* Circulation (big) */}
             <div className="lg:col-span-8">
               <div className="lg:flex lg:items-end lg:justify-between lg:gap-10">
@@ -235,7 +146,9 @@ export default function Home() {
                   <div className="flex items-start gap-3 md:gap-4">
                     <StatNumber>$</StatNumber>
                     <div className="flex items-start gap-3 md:gap-4">
-                      <StatNumber>12.4</StatNumber>
+                      <StatNumber>
+                        <CountUp value={12.4} decimals={1} />
+                      </StatNumber>
                       <div className="font-serif text-[40px] leading-[1.1] tracking-[-1px] md:text-[64px] self-end">
                         <span className="md:hidden">b</span>
                         <span className="hidden md:inline">billion</span>
@@ -266,7 +179,9 @@ export default function Home() {
                   </span>
                 </div>
                 <div className="flex items-start gap-3 md:gap-4">
-                  <StatNumber>+118</StatNumber>
+                  <StatNumber>
+                    <CountUp value={118} prefix="+" />
+                  </StatNumber>
                   <StatNumber>%</StatNumber>
                 </div>
               </div>
@@ -281,7 +196,9 @@ export default function Home() {
                 </div>
                 <div className="flex items-start gap-3 md:gap-4">
                   <StatNumber>$</StatNumber>
-                  <StatNumber>8.4</StatNumber>
+                  <StatNumber>
+                    <CountUp value={8.4} decimals={1} />
+                  </StatNumber>
                   <div className="font-serif text-[40px] leading-[1.1] tracking-[-1px] md:text-[64px] self-end">
                     <span className="md:hidden">m</span>
                     <span className="hidden md:inline">million</span>
@@ -304,7 +221,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Notes / disclosures */}
           <div id="notes" className="mt-20 md:mt-28 border-t border-white/15 pt-6">
@@ -355,10 +272,11 @@ export default function Home() {
                 title: "Holders earn USDC",
                 desc: "Revenue flows to holders as USDC, automatically.",
               },
-            ].map((item) => (
-              <div
+            ].map((item, i) => (
+              <Reveal
                 key={item.step}
-                className="border border-white/15 rounded-2xl p-8 md:p-10"
+                delay={i * 120}
+                className="border border-white/15 rounded-2xl p-8 md:p-10 transition-colors hover:border-white/30"
               >
                 <span className="font-mono text-xs text-cotton/50">
                   {item.step}
@@ -369,7 +287,7 @@ export default function Home() {
                 <p className="text-cotton/65 leading-relaxed text-sm md:text-base">
                   {item.desc}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -378,7 +296,7 @@ export default function Home() {
       {/* ── Rewards ────────────────────────────────── */}
       <section id="rewards" className="py-20 md:py-28 px-5 md:px-10">
         <div className="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div>
+          <Reveal>
             <p className="text-[13px] md:text-sm font-mono uppercase tracking-[0.22em] text-canary mb-3">
               USDC rewards
             </p>
@@ -396,9 +314,9 @@ export default function Home() {
             >
               Get PAYD
             </a>
-          </div>
+          </Reveal>
 
-          <div className="border border-white/15 rounded-2xl p-8 md:p-10 bg-navy/60">
+          <Reveal delay={120} className="border border-white/15 rounded-2xl p-8 md:p-10 bg-navy/60 transition-colors hover:border-white/30">
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-2">
                 <PaydLogo size={22} stroke="#EDEDED" />
@@ -424,7 +342,7 @@ export default function Home() {
               <span className="text-cotton/60">Next payout</span>
               <span className="font-semibold">in 2 days</span>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -434,8 +352,9 @@ export default function Home() {
         className="py-20 md:py-32 px-5 md:px-10 bg-navy border-t border-white/10"
       >
         <div className="max-w-[1320px] mx-auto">
-          <div className="text-center">
+          <Reveal className="text-center">
             <PaydLogo size={64} stroke="#EDEDED" className="mx-auto mb-10" />
+
             <h2 className="font-serif font-normal text-4xl md:text-7xl tracking-[-1.5px] mb-6">
               Launching on Basestonk
             </h2>
@@ -446,18 +365,18 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#"
-                className="bg-black text-white font-semibold px-8 py-4 rounded-full transition-opacity hover:opacity-85"
+                className="bg-black text-white font-semibold px-8 py-4 rounded-full transition-all hover:opacity-85 hover:scale-105 active:scale-95"
               >
                 Get early access
               </a>
               <a
                 href="#"
-                className="border border-white/25 hover:border-white/60 text-cotton font-semibold px-8 py-4 rounded-full transition-colors"
+                className="border border-white/25 hover:border-white/60 text-cotton font-semibold px-8 py-4 rounded-full transition-all hover:scale-105 active:scale-95"
               >
                 Basestonk
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
