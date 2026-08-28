@@ -4,67 +4,184 @@ const navLinks = [
   { label: "How it works", href: "#how" },
   { label: "Rewards", href: "#rewards" },
   { label: "Token", href: "#token" },
-  { label: "Launch", href: "#launch" },
 ];
 
-const stats = [
-  { label: "USDC paid to holders", value: "$1.2M", note: "since launch" },
-  { label: "Holders", value: "8,400+", note: "and growing" },
-  { label: "7-day rewards", value: "+12.4%", note: "yield on holdings" },
-];
+function BasestonkChart({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl border border-white/15 bg-navy ${className}`}
+    >
+      <div className="flex items-center justify-between px-5 md:px-8 pt-5 md:pt-6">
+        <div className="flex items-center gap-3">
+          <div className="w-2.5 h-2.5 rounded-full bg-canary" />
+          <span className="text-xs md:text-sm font-medium uppercase tracking-[0.22em] text-cotton/85">
+            Basestonk — Live chart
+          </span>
+        </div>
+        <span className="text-[11px] md:text-xs font-mono text-cotton/55">
+          $PAYD / USDC
+        </span>
+      </div>
 
-const tokenSpecs = [
-  { key: "Ticker", value: "$PAYD" },
-  { key: "Chain", value: "Ethereum" },
-  { key: "Reward token", value: "USDC" },
-  { key: "Launch venue", value: "Basestonk" },
-];
+      <div className="px-5 md:px-8 mt-4 md:mt-6">
+        <div className="flex items-baseline gap-3">
+          <span className="font-serif text-4xl md:text-6xl leading-none">
+            $0.0241
+          </span>
+          <span className="text-sm md:text-lg font-semibold text-[#7efaa0]">
+            +118.2%
+          </span>
+        </div>
+        <p className="text-xs md:text-sm text-cotton/60 mt-1.5">
+          Since deployment on Basestonk · live once launched
+        </p>
+      </div>
 
-function UpLine({ className = "" }: { className?: string }) {
+      <svg
+        viewBox="0 0 1200 320"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-auto mt-2 md:mt-4 px-1"
+        preserveAspectRatio="none"
+      >
+        {[40, 90, 140, 190, 240, 290].map((y) => (
+          <line
+            key={y}
+            x1="0"
+            y1={y}
+            x2="1200"
+            y2={y}
+            stroke="#FFFFFF"
+            strokeOpacity="0.06"
+          />
+        ))}
+        <defs>
+          <linearGradient id="chart-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#64F08A" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="#64F08A" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M0 250 L80 232 L160 244 L240 208 L320 220 L400 188 L480 200 L560 152
+             L640 172 L720 128 L800 148 L880 96 L960 118 L1040 62 L1120 84 L1200 24
+             L1200 320 L0 320 Z"
+          fill="url(#chart-fill)"
+        />
+        <path
+          d="M0 250 L80 232 L160 244 L240 208 L320 220 L400 188 L480 200 L560 152
+             L640 172 L720 128 L800 148 L880 96 L960 118 L1040 62 L1120 84 L1200 24"
+          stroke="#64F08A"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="1200" cy="24" r="6" fill="#64F08A" />
+        <circle
+          cx="1200"
+          cy="24"
+          r="16"
+          stroke="#64F08A"
+          strokeOpacity="0.35"
+          strokeWidth="2"
+        />
+      </svg>
+
+      <div className="flex items-center justify-between px-5 md:px-8 py-4 md:py-5 font-mono text-[10px] md:text-[11px] text-cotton/50 border-t border-white/10">
+        <span>00:00</span>
+        <span className="text-cotton/70 flex items-center gap-2">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#64F08A] animate-pulse" />
+          Live
+        </span>
+        <span>24h</span>
+      </div>
+    </div>
+  );
+}
+
+function MiniChart() {
   return (
     <svg
-      viewBox="0 0 320 160"
+      viewBox="0 0 240 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className="w-full h-auto"
     >
+      <defs>
+        <linearGradient id="mini-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#EDEDED" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#EDEDED" stopOpacity="0" />
+        </linearGradient>
+      </defs>
       <path
-        d="M8 140 L80 108 L140 120 L212 76 L260 52 L312 20"
-        stroke="#2F6BFF"
+        d="M4 104 L38 92 L70 98 L104 76 L138 84 L172 56 L200 66 L236 26
+           L236 120 L4 120 Z"
+        fill="url(#mini-fill)"
+      />
+      <path
+        d="M4 104 L38 92 L70 98 L104 76 L138 84 L172 56 L200 66 L236 26"
+        stroke="#EDEDED"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
-        d="M8 140 L80 108 L140 120 L212 76 L260 52 L312 20 L312 160 L8 160 Z"
-        fill="#2F6BFF"
-        opacity="0.08"
-      />
-      <circle cx="312" cy="20" r="5" fill="#2F6BFF" />
-      <circle cx="312" cy="20" r="10" fill="none" stroke="#2F6BFF" strokeOpacity="0.25" strokeWidth="1.5" />
     </svg>
+  );
+}
+
+const EyebrowIcon = {
+  money: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-cotton/80">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v10M15 9.5c0-1.4-1.3-2-3-2-1.7 0-3 .7-3 2s1.1 1.8 3 2.2c1.9.4 3 1 3 2.3 0 1.3-1.3 2-3 2s-3-.6-3-2" />
+    </svg>
+  ),
+  growth: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-cotton/80">
+      <path d="M3 17 L9 11 L13 13 L21 4" />
+      <path d="M15 4h6v6" />
+    </svg>
+  ),
+  arrows: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-cotton/80">
+      <path d="M3 8h13M12 4l4 4-4 4" />
+      <path d="M21 16H8M12 20l-4-4 4-4" />
+    </svg>
+  ),
+  flag: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-cotton/80">
+      <path d="M4 22V4" />
+      <path d="M4 5c0-1 1-2 2-2h14l-3 4 3 4H6" />
+    </svg>
+  ),
+};
+
+function StatNumber({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="font-serif text-[64px] leading-[100%] tracking-[-2px] md:text-[104px]">
+      {children}
+    </div>
   );
 }
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-ink">
+    <div className="min-h-screen bg-blu text-cotton">
       {/* ── Nav ─────────────────────────────────────── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-line">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <PaydLogo size={30} />
-            <span className="text-lg font-bold tracking-tight text-ink">
-              PAYD<span className="text-payd">.</span>
+      <header className="sticky top-0 z-50 bg-blu/90 backdrop-blur-md border-b border-white/10">
+        <div className="h-16 md:h-[72px] flex items-center justify-between px-5 md:px-10">
+          <a href="#" className="flex items-center gap-2.5">
+            <PaydLogo size={30} stroke="#EDEDED" />
+            <span className="text-lg font-bold tracking-tight text-cotton">
+              PAYD<span className="text-canary">.</span>
             </span>
-          </div>
+          </a>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-ink-soft hover:text-ink transition-colors"
+                className="text-sm font-medium text-cotton/80 hover:text-cotton transition-colors"
               >
                 {link.label}
               </a>
@@ -73,310 +190,297 @@ export default function Home() {
 
           <a
             href="#launch"
-            className="bg-payd hover:bg-payd-dark text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm"
+            className="bg-black text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-opacity hover:opacity-85"
           >
             Get PAYD
           </a>
         </div>
       </header>
 
-      {/* ── Hero ────────────────────────────────────── */}
-      <section className="relative pt-32 md:pt-40 pb-20 px-6 overflow-hidden">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[420px] bg-payd-light rounded-full blur-[120px] opacity-70 pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto text-center relative">
-          <p className="text-payd font-semibold text-sm tracking-[0.18em] uppercase mb-6 animate-fade-up">
-            $PAYD
-          </p>
-
-          <h1 className="text-4xl md:text-6xl lg:text-[68px] font-bold leading-[1.12] tracking-tight text-ink animate-fade-up-1">
-            Holding shouldn’t just mean
-            <br className="hidden md:block" /> waiting for the price to move.
-            <br className="hidden md:block" />
-            <span className="text-payd">Now it pays in USDC.</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-ink-soft max-w-2xl mx-auto mt-8 mb-10 animate-fade-up-2">
-            PAYD is a token that rewards the people who hold it. No staking. No lockups.
-            Just hold, and let trading activity do the work.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-2">
-            <a
-              href="#launch"
-              className="bg-payd hover:bg-payd-dark text-white font-semibold px-8 py-4 rounded-full transition-colors payd-shadow"
-            >
-              Get PAYD
-            </a>
-            <a
-              href="#how"
-              className="border border-line hover:border-payd/40 hover:text-payd text-ink font-semibold px-8 py-4 rounded-full transition-colors bg-white"
-            >
-              How it works
-            </a>
+      {/* ── Hero — USDC blue stats section ──────────── */}
+      <section className="pb-24 md:pb-32 px-5 md:px-10">
+        <div className="max-w-[1320px] mx-auto">
+          {/* Headline */}
+          <div className="text-center pt-16 md:pt-24">
+            <h1 className="font-serif font-normal text-[40px] leading-[1.06] tracking-[-1.2px] md:text-[64px] lg:text-[76px] lg:tracking-[-1.52px] max-w-[1100px] mx-auto">
+              This is big. In fact, it’s the world’s first
+              <br className="hidden md:block" /> community-run digital dollar{" "}
+              <a href="#notes" className="no-underline align-super text-[22px] md:text-[30px] text-cotton/60">1</a>
+              — ever.
+            </h1>
+            <p className="text-sm md:text-lg text-cotton/65 max-w-xl mx-auto mt-6 md:mt-8">
+              Hold $PAYD and the rewards of every trade flow to you — in USDC,
+              automatically.
+            </p>
           </div>
-        </div>
 
-        <div className="max-w-3xl mx-auto mt-20 relative animate-fade-up-3">
-          <div className="payd-card px-8 py-10 md:px-14 md:py-12 payd-shadow">
-            <div className="flex items-end justify-center">
-              <UpLine className="w-56 md:w-80 animate-draw-line" />
+          {/* Chart — replaces the globe */}
+          <div className="mt-12 md:mt-20">
+            <BasestonkChart />
+          </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-8 mt-16 md:mt-[120px]">
+            {/* Circulation (big) */}
+            <div className="lg:col-span-8">
+              <div className="lg:flex lg:items-end lg:justify-between lg:gap-10">
+                <div className="border-t border-cotton pt-4">
+                  <div className="flex items-center gap-2 mb-5 md:mb-7">
+                    {EyebrowIcon.money}
+                    <span className="text-lg md:text-2xl text-cotton">
+                      $PAYD distributed
+                      <a href="#notes" className="no-underline align-super text-[14px] md:text-[18px] text-cotton/60">2</a>
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-3 md:gap-4">
+                    <StatNumber>$</StatNumber>
+                    <div className="flex items-start gap-3 md:gap-4">
+                      <StatNumber>12.4</StatNumber>
+                      <div className="font-serif text-[40px] leading-[1.1] tracking-[-1px] md:text-[64px] self-end">
+                        <span className="md:hidden">b</span>
+                        <span className="hidden md:inline">billion</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs md:text-sm text-cotton/55 mt-4">
+                    and counting — updated live once launched
+                  </p>
+                </div>
+                <div className="mt-10 lg:mt-0 lg:w-[320px] shrink-0">
+                  <MiniChart />
+                </div>
+              </div>
+
+              {/* Mobile duplicate of the 7-day stat row gap */}
+              <div className="lg:hidden h-10" />
             </div>
-            <div className="mt-8 flex items-center justify-center gap-2 md:gap-3 text-xs md:text-sm text-ink-soft font-medium">
-              <span className="inline-block w-2 h-2 rounded-full bg-payd" />
-              Live — rewards accruing every trade
+
+            {/* Stacked stats */}
+            <div className="lg:col-span-4 flex flex-col">
+              <div className="border-t border-cotton pt-4 pb-8">
+                <div className="flex items-center gap-2 mb-4">
+                  {EyebrowIcon.growth}
+                  <span className="text-lg md:text-2xl text-cotton">
+                    Up in the last 7 days
+                    <a href="#notes" className="no-underline align-super text-[14px] md:text-[18px] text-cotton/60">3</a>
+                  </span>
+                </div>
+                <div className="flex items-start gap-3 md:gap-4">
+                  <StatNumber>+118</StatNumber>
+                  <StatNumber>%</StatNumber>
+                </div>
+              </div>
+
+              <div className="border-t border-cotton pt-4 pb-8">
+                <div className="flex items-center gap-2 mb-4">
+                  {EyebrowIcon.arrows}
+                  <span className="text-lg md:text-2xl text-cotton">
+                    Coin volume
+                    <a href="#notes" className="no-underline align-super text-[14px] md:text-[18px] text-cotton/60">4</a>
+                  </span>
+                </div>
+                <div className="flex items-start gap-3 md:gap-4">
+                  <StatNumber>$</StatNumber>
+                  <StatNumber>8.4</StatNumber>
+                  <div className="font-serif text-[40px] leading-[1.1] tracking-[-1px] md:text-[64px] self-end">
+                    <span className="md:hidden">m</span>
+                    <span className="hidden md:inline">million</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-cotton pt-4 pb-8">
+                <div className="flex items-center gap-2 mb-4">
+                  {EyebrowIcon.flag}
+                  <span className="text-lg md:text-2xl text-cotton">
+                    Deployed on
+                  </span>
+                </div>
+                <div className="flex items-start gap-3 md:gap-4">
+                  <StatNumber>Basestonk</StatNumber>
+                </div>
+                <p className="text-xs md:text-sm text-cotton/55 mt-4">
+                  live once launched
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Notes / disclosures */}
+          <div id="notes" className="mt-20 md:mt-28 border-t border-white/15 pt-6">
+            <div className="max-w-[1000px] flex flex-col gap-2 font-mono text-[11px] md:text-xs text-cotton/45">
+              <p>
+                1&nbsp;&nbsp;&nbsp;PAYD is a community token, not a regulated
+                instrument. Rewards are paid in USDC from protocol revenue.
+              </p>
+              <p>
+                2&nbsp;&nbsp;&nbsp;Once launched on Basestonk, numbers go live
+                and update automatically.
+              </p>
+              <p>
+                3&nbsp;&nbsp;&nbsp;7-day price change as shown on Basestonk.
+              </p>
+              <p>
+                4&nbsp;&nbsp;&nbsp;Total traded volume across all markets.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Mechanic ────────────────────────────────── */}
-      <section id="how" className="py-20 md:py-28 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-payd font-semibold text-sm tracking-[0.18em] uppercase mb-3">
+      {/* ── How it works ────────────────────────────── */}
+      <section id="how" className="bg-navy py-20 md:py-28 px-5 md:px-10 border-t border-white/10">
+        <div className="max-w-[1320px] mx-auto">
+          <p className="text-[13px] md:text-sm font-mono uppercase tracking-[0.22em] text-canary mb-3">
             How PAYD works
           </p>
-          <h2 className="text-center text-3xl md:text-5xl font-bold tracking-tight mb-14">
+          <h2 className="font-serif font-normal text-4xl md:text-6xl tracking-[-1.2px] mb-14">
             A simple mechanic.
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 relative">
-            <div className="hidden md:flex absolute top-1/2 left-[calc(22%)] right-[calc(22%)] h-px bg-line pointer-events-none" />
-
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {[
               {
                 step: "01",
                 title: "Hold PAYD",
                 desc: "Buy and hold PAYD in your wallet. That’s it.",
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-                    <path d="M4 19 L4 17 M9 19 L9 12 M14 19 L14 15 M19 19 L19 8" />
-                    <path d="M3 4h18" opacity="0.4" />
-                  </svg>
-                ),
               },
               {
                 step: "02",
                 title: "Trading activity runs",
                 desc: "Every trade generates protocol revenue.",
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-                    <path d="M3 17 L9 11 L13 13 L21 4" />
-                    <path d="M15 4h6v6" />
-                  </svg>
-                ),
               },
               {
                 step: "03",
                 title: "Holders earn USDC",
                 desc: "Revenue flows to holders as USDC, automatically.",
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M12 7v10M15 9.5c0-1.4-1.3-2-3-2-1.7 0-3 .7-3 2s1.1 1.8 3 2.2c1.9.4 3 1 3 2.3 0 1.3-1.3 2-3 2s-3-.6-3-2" />
-                  </svg>
-                ),
               },
-            ].map((item, i) => (
+            ].map((item) => (
               <div
                 key={item.step}
-                className="relative payd-card p-8 payd-shadow transition-shadow hover:shadow-md"
+                className="border border-white/15 rounded-2xl p-8 md:p-10"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-11 h-11 rounded-xl bg-payd-light flex items-center justify-center text-payd">
-                    {item.icon}
-                  </div>
-                  <span className="text-xs font-semibold tracking-widest text-ink-soft">
-                    {item.step}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-sm text-ink-soft leading-relaxed">{item.desc}</p>
-                {i < 2 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-5 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-line items-center justify-center text-payd shadow-sm">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                      <path d="M4 12h16M14 6l6 6-6 6" />
-                    </svg>
-                  </div>
-                )}
+                <span className="font-mono text-xs text-cotton/50">
+                  {item.step}
+                </span>
+                <h3 className="font-serif text-2xl md:text-3xl mt-4 mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-cotton/65 leading-relaxed text-sm md:text-base">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Rewards ─────────────────────────────────── */}
-      <section id="rewards" className="py-20 md:py-28 px-6 bg-payd-pale">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+      {/* ── Rewards ────────────────────────────────── */}
+      <section id="rewards" className="py-20 md:py-28 px-5 md:px-10">
+        <div className="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
-            <p className="text-payd font-semibold text-sm tracking-[0.18em] uppercase mb-3">
+            <p className="text-[13px] md:text-sm font-mono uppercase tracking-[0.22em] text-canary mb-3">
               USDC rewards
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+            <h2 className="font-serif font-normal text-4xl md:text-6xl tracking-[-1.2px] mb-6 leading-[1.08]">
               Hold. Earn. It builds up on its own.
             </h2>
-            <p className="text-ink-soft text-lg leading-relaxed mb-8">
-              PAYD shares the revenue generated by trading activity with its holders — paid out in
-              real USDC. No lockups, no staking pools, nothing to manage.
+            <p className="text-cotton/65 text-lg leading-relaxed mb-8">
+              PAYD shares the revenue generated by trading activity with its
+              holders, paid out in real USDC. No lockups. No staking pools.
+              Nothing to manage.
             </p>
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl bg-white border border-line flex items-center justify-center text-payd">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 7v10M15 9.5c0-1.4-1.3-2-3-2-1.7 0-3 .7-3 2s1.1 1.8 3 2.2 1.9.4 3 1 3 2.3 0 1.3-1.3 2-3 2s-3-.6-3-2" />
-                </svg>
+            <a
+              href="#launch"
+              className="inline-block bg-black text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-opacity hover:opacity-85"
+            >
+              Get PAYD
+            </a>
+          </div>
+
+          <div className="border border-white/15 rounded-2xl p-8 md:p-10 bg-navy/60">
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-2">
+                <PaydLogo size={22} stroke="#EDEDED" />
+                <span className="text-sm font-bold">PAYD</span>
               </div>
-              <span className="text-sm font-medium text-ink-soft">
-                Rewards settle in{" "}
-                <span className="text-ink font-semibold">USDC,</span> the world’s leading
-                digital dollar.
+              <span className="text-[11px] font-mono uppercase tracking-widest text-cotton/55">
+                Rewards
               </span>
             </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-0 bg-payd-light rounded-[32px] rotate-2 pointer-events-none" />
-            <div className="relative payd-card p-10 payd-shadow">
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-2">
-                  <PaydLogo size={22} />
-                  <span className="text-sm font-bold">PAYD</span>
-                </div>
-                <span className="text-[11px] font-semibold tracking-widest uppercase text-ink-soft">
-                  Rewards
-                </span>
-              </div>
-              <div className="flex items-end justify-between mb-2">
-                <div>
-                  <p className="text-xs text-ink-soft mb-1">Your USDC balance</p>
-                  <p className="text-4xl font-bold text-ink">$441.20</p>
-                </div>
-                <span className="text-sm font-bold text-payd mb-2">+4.2%</span>
-              </div>
-              <UpLine className="w-full h-24" />
-              <div className="border-t border-line mt-6 pt-6 flex items-center justify-between text-sm">
-                <span className="text-ink-soft">Next payout</span>
-                <span className="font-semibold">in 2 days</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Stats ───────────────────────────────────── */}
-      <section className="py-20 md:py-28 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="payd-card px-8 py-12 md:p-14 payd-shadow">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div className="flex items-end justify-between mb-3">
               <div>
-                <p className="text-payd font-semibold text-sm tracking-[0.18em] uppercase mb-3">
-                  Live rewards
+                <p className="text-xs text-cotton/60 mb-1">Your USDC balance</p>
+                <p className="font-serif text-4xl md:text-5xl leading-none">
+                  $441.20
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                  Real numbers, public for everyone.
-                </h2>
               </div>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-ink-soft">
-                <span className="inline-block w-2 h-2 rounded-full bg-payd animate-pulse" />
-                Updated live
+              <span className="text-sm font-bold text-[#7efaa0] mb-1">
+                +4.2%
               </span>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-sm text-ink-soft mb-2">{stat.label}</p>
-                  <p className="text-4xl md:text-5xl font-bold text-ink tracking-tight">
-                    {stat.value}
-                  </p>
-                  <p className="text-xs text-ink-soft mt-2">{stat.note}</p>
-                </div>
-              ))}
+            <MiniChart />
+            <div className="border-t border-white/15 mt-6 pt-6 flex items-center justify-between text-sm">
+              <span className="text-cotton/60">Next payout</span>
+              <span className="font-semibold">in 2 days</span>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Token ───────────────────────────────────── */}
-      <section id="token" className="py-20 md:py-28 px-6 bg-payd-pale">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-payd font-semibold text-sm tracking-[0.18em] uppercase mb-3">
-            Token
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            $PAYD
-          </h2>
-          <p className="text-ink-soft text-lg mb-12 max-w-xl">
-            Simple, transparent, and fully on-chain. Nothing hidden.
-          </p>
-
-          <div className="payd-card divide-y divide-line payd-shadow overflow-hidden">
-            {tokenSpecs.map((row) => (
-              <div
-                key={row.key}
-                className="flex items-center justify-between px-6 md:px-10 py-5"
-              >
-                <span className="text-sm font-medium text-ink-soft">{row.key}</span>
-                <span className="text-sm md:text-base font-bold text-ink">{row.value}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* ── Launch ──────────────────────────────────── */}
-      <section id="launch" className="py-20 md:py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="payd-card p-10 md:p-16 text-center relative overflow-hidden payd-shadow">
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[420px] h-[260px] bg-payd-light rounded-full blur-[90px] opacity-80 pointer-events-none" />
-            <div className="relative">
-              <PaydLogo size={56} className="mx-auto mb-8" />
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-5">
-                Launching on Basestonk
-              </h2>
-              <p className="text-lg text-ink-soft max-w-xl mx-auto mb-10">
-                PAYD goes live on Basestonk. Be there when trading starts — and rewards start
-                flowing.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="#"
-                  className="bg-payd hover:bg-payd-dark text-white font-semibold px-8 py-4 rounded-full transition-colors payd-shadow"
-                >
-                  Get early access
-                </a>
-                <a
-                  href="#"
-                  className="border border-line hover:border-payd/40 hover:text-payd text-ink font-semibold px-8 py-4 rounded-full transition-colors bg-white"
-                >
-                  Basestonk
-                </a>
-              </div>
+      <section
+        id="launch"
+        className="py-20 md:py-32 px-5 md:px-10 bg-navy border-t border-white/10"
+      >
+        <div className="max-w-[1320px] mx-auto">
+          <div className="text-center">
+            <PaydLogo size={64} stroke="#EDEDED" className="mx-auto mb-10" />
+            <h2 className="font-serif font-normal text-4xl md:text-7xl tracking-[-1.5px] mb-6">
+              Launching on Basestonk
+            </h2>
+            <p className="text-lg text-cotton/65 max-w-xl mx-auto mb-10">
+              PAYD goes live on Basestonk. Be there when trading starts — and
+              rewards start flowing.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#"
+                className="bg-black text-white font-semibold px-8 py-4 rounded-full transition-opacity hover:opacity-85"
+              >
+                Get early access
+              </a>
+              <a
+                href="#"
+                className="border border-white/25 hover:border-white/60 text-cotton font-semibold px-8 py-4 rounded-full transition-colors"
+              >
+                Basestonk
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Footer ──────────────────────────────────── */}
-      <footer className="border-t border-line px-6 py-12">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <footer className="px-5 md:px-10 py-12 border-t border-white/10">
+        <div className="max-w-[1320px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
-            <PaydLogo size={24} />
-            <span className="font-bold text-ink">
-              PAYD<span className="text-payd">.</span>
+            <PaydLogo size={24} stroke="#EDEDED" />
+            <span className="font-bold text-cotton">
+              PAYD<span className="text-canary">.</span>
             </span>
           </div>
-          <p className="text-xs text-ink-soft">
+          <p className="text-xs text-cotton/50">
             © 2026 PAYD · Community-owned · Transparent · On-chain
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-ink-soft hover:text-payd transition-colors font-medium">
+            <a href="#" className="text-cotton/55 hover:text-cotton transition-colors font-medium">
               Docs
             </a>
-            <a href="#" className="text-ink-soft hover:text-payd transition-colors font-medium">
+            <a href="#" className="text-cotton/55 hover:text-cotton transition-colors font-medium">
               Audit
             </a>
-            <a href="#" className="text-ink-soft hover:text-payd transition-colors font-medium">
+            <a href="#" className="text-cotton/55 hover:text-cotton transition-colors font-medium">
               X
             </a>
           </div>
